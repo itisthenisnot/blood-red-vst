@@ -40,6 +40,11 @@ async function load() {
   for (const item of state.items) byId.set(item.id, item);
 }
 
+// The CLAP toggle is hidden on the Android tab, so it must not filter there.
+function activeFilters() {
+  return state.tab === 'android' ? { ...state.filters, clap: false } : state.filters;
+}
+
 function itemsForTab() {
   if (state.tab === 'saved') {
     const ids = new Set(savedIds());
@@ -108,7 +113,7 @@ function badges(item) {
 }
 
 function renderGrid() {
-  const list = applyFilters(itemsForTab(), state.filters);
+  const list = applyFilters(itemsForTab(), activeFilters());
   const grid = $('#grid');
   grid.replaceChildren(...list.map(card));
   if (!list.length) {
@@ -160,12 +165,14 @@ function route() {
   const item = hash.match(/^#\/item\/(.+)$/);
   if (item) {
     const entry = byId.get(decodeURIComponent(item[1]));
-    if (entry && state.tab !== 'saved' && state.tab !== entry.platform) {
-      state.tab = entry.platform;
+    if (entry) {
+      if (state.tab !== 'saved') state.tab = entry.platform;
       render();
+      openDetail(entry.id);
+      return;
     }
-    openDetail(decodeURIComponent(item[1]));
-    return;
+    // Unknown or removed id (e.g. an old bookmark): fall back to the catalog.
+    history.replaceState(null, '', '#/vst');
   }
   const tab = hash.slice(2);
   state.tab = ['vst', 'android', 'saved'].includes(tab) ? tab : 'vst';
@@ -182,7 +189,7 @@ function wire() {
   $('#obscure').addEventListener('change', (e) => { state.filters.obscure = e.target.checked; renderGrid(); });
 
   $('#surprise').addEventListener('click', () => {
-    const list = applyFilters(itemsForTab(), state.filters);
+    const list = applyFilters(itemsForTab(), activeFilters());
     if (list.length) location.hash = `#/item/${list[Math.floor(Math.random() * list.length)].id}`;
   });
 
