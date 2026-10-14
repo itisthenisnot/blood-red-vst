@@ -1,0 +1,12 @@
+[
+  { "id": "granular", "name": "Granular", "blurb": "Chops audio into tiny grains, then stretches, pitches and reorders them into clouds, pads and textures." },
+  { "id": "glitch", "name": "Glitch & Time", "blurb": "Stutters, reverses, tape stops and deliberate instability. Effects built to break things on purpose." },
+  { "id": "spectral", "name": "Spectral", "blurb": "Works on the harmonics and frequency bins themselves (FFT), not only the waveform." },
+  { "id": "ai", "name": "AI & Generative", "blurb": "Machine learning or generative engines that invent sounds, patches or patterns for you." },
+  { "id": "physical", "name": "Physical Modeling", "blurb": "Simulates vibrating strings, plates, springs and resonators mathematically, with no samples involved." },
+  { "id": "sampler", "name": "Creative Samplers", "blurb": "Samplers that slice, stretch, layer and randomize instead of just playing the file back." },
+  { "id": "modulation", "name": "Weird Modulation", "blurb": "Unusual sequencers, multiband modulators and movement generators." },
+  { "id": "lofi", "name": "Lo-fi & Character", "blurb": "Tape, degradation, saturation and sound with a personality." },
+  { "id": "synth", "name": "Odd Synths", "blurb": "Synthesizers with unconventional engines or interfaces." },
+  { "id": "daw", "name": "Mobile Studio", "blurb": "Full production environments that fit in your pocket." }
+]

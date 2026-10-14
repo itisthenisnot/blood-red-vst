@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Blood Red VST</title>
+  <meta name="description" content="Discover unique Windows VST3/CLAP plugins for Bitwig Studio 6 and offbeat Android music apps.">
+  <meta name="theme-color" content="#8a0b14">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="icons/icon.svg" alt="" width="32" height="32">
+      <div>
+        <h1>Blood Red VST</h1>
+        <p class="sub">Unusual plugins for Bitwig 6 &amp; Android</p>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <a href="#/vst" data-tab="vst" role="tab">Windows VST</a>
+      <a href="#/android" data-tab="android" role="tab">Android</a>
+      <a href="#/saved" data-tab="saved" role="tab">Saved <span id="saved-count" class="count"></span></a>
+    </nav>
+  </header>
+
+  <section class="controls" aria-label="Filters">
+    <input id="search" type="search" placeholder="Search name, developer, tag…" aria-label="Search">
+    <div class="row">
+      <select id="price" aria-label="Price">
+        <option value="">Any price</option>
+        <option value="free">Free</option>
+        <option value="freemium">Freemium</option>
+        <option value="paid">Paid</option>
+      </select>
+      <select id="sort" aria-label="Sort">
+        <option value="unique">Most unique</option>
+        <option value="name">A–Z</option>
+      </select>
+      <label class="toggle" id="clap-wrap" title="Only plugins with a CLAP build, Bitwig's native format">
+        <input type="checkbox" id="clap"> CLAP only
+      </label>
+      <label class="toggle" title="Hide the better-known picks">
+        <input type="checkbox" id="obscure"> Obscure only
+      </label>
+      <button id="surprise" type="button">Surprise me</button>
+    </div>
+    <div id="chips" class="chips" role="group" aria-label="Categories"></div>
+    <p id="cat-blurb" class="blurb"></p>
+  </section>
+
+  <main>
+    <p id="result-count" class="result-count" aria-live="polite"></p>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <dialog id="detail" aria-labelledby="d-name">
+    <article>
+      <button class="close" type="button" aria-label="Close">×</button>
+      <p class="d-dev" id="d-dev"></p>
+      <h2 id="d-name"></h2>
+      <div class="d-meta" id="d-meta"></div>
+      <p id="d-desc"></p>
+      <h3>Why it's unique</h3>
+      <p id="d-why"></p>
+      <h3 id="d-tips-h">Bitwig 6 tips</h3>
+      <p id="d-tips"></p>
+      <div class="d-tags" id="d-tags"></div>
+      <div class="d-actions">
+        <button type="button" data-flag="fav">♥ Favorite</button>
+        <button type="button" data-flag="own">✓ I own it</button>
+        <button type="button" data-flag="want">★ Wishlist</button>
+        <a id="d-link" target="_blank" rel="noopener">Visit site ↗</a>
+      </div>
+      <p class="d-note" id="d-note"></p>
+    </article>
+  </dialog>
+
+  <footer>
+    <p>Formats and prices change, so check the developer's site before buying. Entries marked <span class="badge ok">checked</span> were checked online in Oct 2026.</p>
+    <p>
+      <button id="export" type="button">Export saved</button>
+      <label class="import">Import <input id="import" type="file" accept="application/json"></label>
+    </p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
